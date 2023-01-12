@@ -1,0 +1,59 @@
+{% load static %} {% load compress %}
+<div
+  class="tab-pane fade"
+  id="nav-home"
+  role="tabpanel"
+  aria-labelledby="nav-home-tab"
+>
+  <div class="row">
+    {% for product in products %}
+    <div class="col-xl-6">
+      <div class="product product-4">
+        <div class="product__thumb">
+          <a href="{{ product.get_url }}">
+            <img
+              class="product-primary"
+              src="{{ product.image_1.url }}"
+              alt="product_image"
+            />
+            <img
+              class="product-secondary"
+              src="{{ product.image_1.url }}"
+              alt="product_image"
+            />
+          </a>
+          <div class="product-info mb-10">
+            <div class="product_category">
+              <span>{{ product.slug }}</span>
+            </div>
+            <!-- <div class="product_rating">
+          <a href="#"
+            ><i class="fal fa-star start-color"></i
+          ></a>
+          <a href="#"
+            ><i class="fal fa-star start-color"></i
+          ></a>
+          <a href="#"
+            ><i class="fal fa-star start-color"></i
+          ></a>
+          <a href="#"><i class="fal fa-star"></i></a>
+          <a href="#"><i class="fal fa-star"></i></a>
+        </div> -->
+          </div>
+          <div class="product__name">
+            <h4>
+              <a href="{{ product.get_url }}">{{ product.product_name }}</a>
+            </h4>
+            <div class="pro-price">
+              <p class="p-absoulute pr-1">
+                <span>Rs. {{ product.price }}</span>
+              </p>
+              <a class="p-absoulute pr-2" href="{{ product.get_url }}">View Product</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

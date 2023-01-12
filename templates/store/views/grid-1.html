@@ -1,0 +1,56 @@
+{% load static %} {% load compress %}
+
+<div
+  class="tab-pane fade"
+  id="nav-list"
+  role="tabpanel"
+  aria-labelledby="nav-contact-tab"
+>
+  {% for product in products %}
+  <div class="border-top">
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4">
+        <div class="list-product">
+          <div class="list__thumb">
+            <a href="{{ product.get_url }}"
+              ><img src="{{ product.image_1.url }}" alt=""
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8 col-lg-8 col-md-8">
+        <div class="list__content">
+          <div class="viewcontent">
+            <div class="viewcontent__header">
+              <a href="{{ product.get_url }}"
+                ><h2 class="mb-10">{{ product.product_name }}</h2></a
+              >
+            </div>
+            <!-- <div class="viewcontent__rating">
+              <i class="fal fa-star ratingcolor"></i>
+              <i class="fal fa-star ratingcolor"></i>
+              <i class="fal fa-star ratingcolor"></i>
+              <i class="fal fa-star"></i>
+            </div> -->
+            <div class="viewcontent__price">
+              <h4><span>Rs.</span> {{ product.price }}</h4>
+            </div>
+            <div class="view__para">
+              <p>
+                {{product.description_1}}   
+              </p>
+            </div>
+            <div class="list-actions pt-20">
+              <div class="viewcontent__action">
+                <span><a href="{{ product.get_url }}">View Product</a></span>
+                <!-- <a href="#"><i class="fal fa-heart"></i></a>
+                <a class="ml-5" href="#"><i class="fal fa-layer-group"></i></a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
