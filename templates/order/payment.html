@@ -1,0 +1,114 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% load compress %} 
+{% block content %}
+
+<div class="checkout_area pt-80">
+    <div class="container">
+        <form action="{% url 'paynow' order.order_number %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xl-7 col-lg-7 col-md-12">
+                    <div class="card">
+                        <h5 class="card-header">Billing Address</h5>
+                        <div class="card-body">
+                            <p class="card-text mb-0">{{order.full_name}}</p>
+                            <p class="card-text mb-0">{{order.full_address}}</p>
+                            <p class="card-text mb-0">{{order.city}}, {{order.state}}</p>
+                            <p class="card-text mb-0">{{order.country}}</p>
+                            <p class="card-text mb-0">{{order.email}}</p>
+                            <p class="card-text mb-0">{{order.phone}}</p>
+                            {% if order.order_note %}
+                            <b>Order Note: </b> {{order.order_note}}
+                            {% endif %}
+    
+    
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">Payment Method</h5>
+                        <div class="card-body">
+                            <p class="card-text">PayPal</p>
+    
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">Review Products</h5>
+                        <div class="card-body">
+                            <table class="table table-borderless table-shopping-cart">
+                                <thead class="text-muted">
+                                    <tr class="small text-uppercase">
+                                        <th scope="col">Product</th>
+                                        <th scope="col" width="120">Quantity</th>
+                                        <th scope="col" width="120">Price</th>
+    
+                                    </tr>
+                                </thead>
+                                <tbody>
+    
+                                    {% for cart_item in cart_items %}
+                                    <tr>
+                                        <td>
+                                            <figure class="itemside align-items-center" >
+                                                <div class="aside" style="display: flex; flex-direction: row;"><img src="{{ cart_item.product.image_1.url }}" class="img-sm" width="10%">
+                                                    <figcaption class="info">
+                                                        <a href="{{ cart_item.product.get_url }}" class="text-dark">{{ cart_item.product.product_name }}</a>
+                                                    </figcaption></div>
+                                                
+                                            </figure>
+                                        </td>
+                                        <td>
+                                            <!-- col.// -->
+                                            <label for="">{{cart_item.quantity}}</label>
+                                        </td>
+                                        <td>
+                                            <div class="price-wrap">
+                                                <var class="price">Rs. {{ cart_item.sub_total }}</var><br>
+                                                <small class="text-muted"> Rs. {{ cart_item.product.price }} each </small>
+                                            </div> <!-- price-wrap .// -->
+                                        </td>
+    
+                                    </tr>
+                                    {% endfor %}
+    
+                                </tbody>
+                            </table>
+    
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-xl-5 col-lg-5 col-md-12">
+                    <div class="cart__acount ml-50">
+                        <table>
+                        <tr class="first-child-2">
+                            <td>Bill Total: </td>
+                            <td class="lightbluee" name="order_total" value="{{total}}">Rs.{{total}}</td>
+                        </tr>
+                    <!-- <tr class="first-child lastchild">
+                        <td>Shipping</td>
+                        <td>Enter your address to view shipping options. </td>
+                    </tr>
+                    <tr class="first-child-2">
+                        <td>Total</td>
+                        <td class="lightbluee">$47.00</td>
+                    </tr> -->
+                </table>
+
+                        <div class="terms pt-50 pb-20">
+                            <p>Kindly Confirm your Order!!!</p>
+                            <div class="check_term">
+                                <input type="checkbox" required>
+                                <p>I have checked and I am going to buy the products!! <span>*</span></p>
+                            </div>
+                            <div class="order-button">
+                                <button type="submit">Pay Now</button>
+                            </div>
+                        </div>
+                    </div>    
+                    </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

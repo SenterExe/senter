@@ -1,0 +1,13 @@
+{% autoescape off %}
+
+Hi {{user.first_name}},
+
+{{ message }}
+
+{% if status == 'Credit' %}
+Order Number: {{order.order_number}}
+
+You will get further updates directly from our team!!
+{% endif %}
+
+{% endautoescape %}

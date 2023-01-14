@@ -1,50 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% load compress %} 
 {% block content %}
-<div class="offcanvas-overlay"></div>
-
-<!-- cart area start  -->
-<!-- <div class="cart__sidebar">
-  <div class="container">
-    <div class="cart__content">
-      <div class="cart-text">
-        <h3 class="mb-40">Shopping cart</h3>
-        <div class="add_cart_product">
-          <div class="add_cart_product__thumb">
-            <img src="./assets/img/product/29-3.jpg" alt="" />
-          </div>
-          <div class="add_cart_product__content">
-            <h5><a href="shop.html">Running 3-Stripes</a></h5>
-            <p>1 × $66.00</p>
-            <button class="cart_close"><i class="fal fa-times"></i></button>
-          </div>
-        </div>
-        <div class="add_cart_product">
-          <div class="add_cart_product__thumb">
-            <img src="./assets/img/product/17.jpg" alt="" />
-          </div>
-          <div class="add_cart_product__content">
-            <h5><a href="shop.html">Buddy non Stripes</a></h5>
-            <p>1 × $40.00</p>
-            <button class="cart_close"><i class="fal fa-times"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="cart-icon">
-        <i class="fal fa-times"></i>
-      </div>
-      <div class="cart-bottom">
-        <div class="cart-bottom__text">
-          <span>Subtotal:</span>
-          <span class="end">$121.00</span>
-          <a href="cart.html">view cart</a>
-          <a href="checkout.html">checkout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="cart-offcanvas-overlay"></div> -->
-<!-- cart area end  -->
 
 <!-- breadcrumb area start -->
 <div class="page-layout" data-background="{% static 'img/slider/shop.jpg' %}">
@@ -56,8 +11,8 @@
           <div class="breadcrumb-menu">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="shop.html">shop</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'store' %}">Shop</a></li>
               </ol>
             </nav>
           </div>
@@ -72,187 +27,8 @@
 <div class="shop-page pt-85">
   <div class="container">
     <div class="row">
-      <!-- <div class="col-xl-3 col-lg-4 col-md-12">
-        <div class="sidebar">
-          <div class="product-widget">
-            <h3 class="widget-title mb-30">Product categories</h3>
-            <ul class="product-categories">
-              <li>
-                <a href="shop.html">Sportswear <span>(5)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Training Wear <span>(0)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Women’s <span>(2)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Youth <span>(4)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Handbag <span>(2)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Helmet for Women’s <span>(0)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Kids & Young <span>(0)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Mens Running <span>(0)</span></a>
-              </li>
-              <li>
-                <a href="shop.html"> Outerwears <span>(9)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Sneaker <span>(1)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Sportswear <span>(5)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Training Wear <span>(0)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Women’s <span>(2)</span></a>
-              </li>
-              <li>
-                <a href="shop.html">Youth <span>(4)</span></a>
-              </li>
-            </ul>
-          </div>
-          <div class="product-widget pt-50">
-            <h3 class="widget-title mb-30">Filter By Price</h3>
-            <form action="#">
-              <div class="price-filter">
-                <div
-                  id="slider-range"
-                  class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                >
-                  <div
-                    class="ui-slider-range ui-corner-all ui-widget-header"
-                    style="left: 15%; width: 46.4%"
-                  ></div>
-                  <span
-                    tabindex="0"
-                    class="ui-slider-handle ui-corner-all ui-state-default"
-                    style="left: 7.2%"
-                  ></span
-                  ><span
-                    tabindex="0"
-                    class="ui-slider-handle ui-corner-all ui-state-default"
-                    style="left: 48.8%"
-                  ></span>
-                  <div
-                    class="ui-slider-range ui-corner-all ui-widget-header"
-                    style="left: 15%; width: 45%"
-                  ></div>
-                  <div
-                    class="ui-slider-range ui-corner-all ui-widget-header"
-                    style="left: 7.2%; width: 41.6%"
-                  ></div>
-                </div>
-                <div class="filter-form-submit mt-35">
-                  <button type="submit">Filter</button>
-                  <div class="filter-price d-inline-block pl-20">
-                    Price:
-                    <input type="button" id="amount" value="$36 - $244" />
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="product-widget pt-50">
-            <h3 class="widget-title mb-30">Size</h3>
-            <div class="layer-size">
-              <span>3XL</span>
-              <span>L</span>
-              <span>M</span>
-            </div>
-          </div>
-          <div class="product-widget pt-50">
-            <h3 class="widget-title mb-30">Color Options</h3>
-            <div class="colors-layer">
-              <a href="shop.html"><span class="blue"></span></a>
-              <a href="shop.html"><span class="gray"></span></a>
-              <a href="shop.html"><span class="skyblue"></span></a>
-              <a href="shop.html"><span class="red"></span></a>
-              <a href="shop.html"><span class="yellow"></span></a>
-            </div>
-          </div>
-          <div class="product_list_widget">
-            <h3 class="widget-title mb-30 pt-50">Top rated</h3>
-            <div class="item-widget">
-              <div class="img-left">
-                <a href="single.html"
-                  ><img src="./assets/img/product/10.jpg" alt="product-meta"
-                /></a>
-              </div>
-              <div class="product-meta">
-                <a href="single.html"
-                  ><h4 class="sm-title">Arsenal Home Jersey</h4></a
-                >
-                <span>$55.00</span>
-              </div>
-            </div>
-            <div class="item-widget">
-              <div class="img-left">
-                <a href="single.html"
-                  ><img src="./assets/img/product/11.jpg" alt="product-meta"
-                /></a>
-              </div>
-              <div class="product-meta">
-                <a href="single.html"
-                  ><h4 class="sm-title">Lorem Ipsum simply</h4></a
-                >
-                <span>$55.00</span>
-              </div>
-            </div>
-            <div class="item-widget">
-              <div class="img-left">
-                <a href="single.html"
-                  ><img src="./assets/img/product/12.jpg" alt="product-meta"
-                /></a>
-              </div>
-              <div class="product-meta">
-                <a href="single.html"
-                  ><h4 class="sm-title">dummy text of the</h4></a
-                >
-                <span>$55.00</span>
-              </div>
-            </div>
-            <div class="item-widget">
-              <div class="img-left">
-                <a href="single.html"
-                  ><img src="./assets/img/product/13.jpg" alt="product-meta"
-                /></a>
-              </div>
-              <div class="product-meta">
-                <a href="single.html"
-                  ><h4 class="sm-title">printing and typesetting</h4></a
-                >
-                <span>$55.00</span>
-              </div>
-            </div>
-          </div>
-          <div class="product-widget pt-50">
-            <h3 class="widget-title mb-30">Product tags</h3>
-            <div class="tags mb-50">
-              <a href="shop.html">Basketball</a>
-              <a href="shop.html">Handbag</a>
-              <a href="shop.html">Jackets</a>
-              <a href="shop.html">Kids & Young</a>
-              <a href="shop.html">Training Wear</a>
-              <a href="shop.html">Women’s</a>
-            </div>
-          </div>
-        </div>
-      </div> -->
       <div class="col-xl-9 col-lg-8 col-md-9 col-sm-12">
         <div class="shop-top-bar position-relative">
-          <!-- <div class="showing-result">
-            <p>Showing all 21 results</p>
-          </div> -->
           <div class="shop-tab">
             <nav>
               <div class="nav nav-tabs shop-tabs" id="nav-tab" role="tablist">
@@ -327,11 +103,11 @@
                     <div class="product-widget pt-50">
                       <h3 class="widget-title mb-30">color</h3>
                       <div class="colors-layer">
-                        <a href="shop.html"><span class="blue"></span></a>
-                        <a href="shop.html"><span class="gray"></span></a>
-                        <a href="shop.html"><span class="skyblue"></span></a>
-                        <a href="shop.html"><span class="red"></span></a>
-                        <a href="shop.html"><span class="yellow"></span></a>
+                        <a href="{% url 'store' %}"><span class="blue"></span></a>
+                        <a href="{% url 'store' %}"><span class="gray"></span></a>
+                        <a href="{% url 'store' %}"><span class="skyblue"></span></a>
+                        <a href="{% url 'store' %}"><span class="red"></span></a>
+                        <a href="{% url 'store' %}"><span class="yellow"></span></a>
                       </div>
                     </div>
                   </div>
@@ -396,12 +172,12 @@
                     <div class="product-widget pt-50">
                       <h3 class="widget-title mb-30">Product tags</h3>
                       <div class="tags mb-50">
-                        <a href="shop.html">Basketball</a>
-                        <a href="shop.html">Handbag</a>
-                        <a href="shop.html">Jackets</a>
-                        <a href="shop.html">Kids & Young</a>
-                        <a href="shop.html">Training Wear</a>
-                        <a href="shop.html">Women’s</a>
+                        <a href="{% url 'store' %}">Basketball</a>
+                        <a href="{% url 'store' %}">Handbag</a>
+                        <a href="{% url 'store' %}">Jackets</a>
+                        <a href="{% url 'store' %}">Kids & Young</a>
+                        <a href="{% url 'store' %}">Training Wear</a>
+                        <a href="{% url 'store' %}">Women’s</a>
                       </div>
                     </div>
                   </div>

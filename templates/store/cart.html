@@ -11,8 +11,8 @@
           <div class="breadcrumb-menu">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="cart.html">cart</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'carts' %}">cart</a></li>
               </ol>
             </nav>
           </div>
@@ -23,6 +23,14 @@
 </div>
 <!-- breadcrumb area end -->
 
+{% if not cart_items %}
+<div class="f_cart_area pt-110 mb-100">
+  <div class="breadcrumb-area text-center container">
+    <h2 class="page-title-dark">Your Cart is Empty</h2>
+    <a href="{% url 'store' %}" class="btn btn-primary">Continue Shopping</a>
+  </div>
+</div>
+{% else %}
 <div class="f_cart_area pt-110 mb-100">
   <div class="container">
     <div class="row">
@@ -45,28 +53,19 @@
                 <td>{{ cart_item.product.product_name }}</td>
                 <td>Rs. {{ cart_item.product.price }}</td>
                 <td>
-                  <div class="viewcontent__action single_action pt-30">
-                    <span><input type="number" placeholder="1" /></span>
-                  </div>
+                  <a class="btn btn-light" id="button-minus" href="{% url 'remove_cart' cart_item.product.id %}"> <i class="fa fa-minus"></i> </a>
+                  <input type="text" placeholder="{{ cart_item.quantity }}" class="cart-quantity" />
+                  <a class="btn btn-light" id="button-plus" href="{% url 'add_cart' cart_item.product.id %}"> <i class="fa fa-plus"></i> </a>
                 </td>
-                <td>$451.00</td>
+                <td>Rs. {{ cart_item.sub_total }}</td>
                 <td class="width-set">
-                  <a href="javascript:void(0)"
+                  <a href="{% url 'remove_cart_item' cart_item.product.id %}"
                     ><i class="fal fa-times-circle"></i
                   ></a>
                 </td>
               </tr>
               {% endfor %}
             </tbody>
-            <tfoot>
-              <tr class="design-footer">
-                <td>
-                  <input type="text" placeholder="Coupon Code" />
-                </td>
-                <td><button type="submit">Apply Coupon</button></td>
-                <td colspan="3"><a href="#">update cart</a></td>
-              </tr>
-            </tfoot>
           </table>
         </div>
       </div>
@@ -76,22 +75,21 @@
           <table>
             <tr class="first-child">
               <td>Subtotal</td>
-              <td>$18.00</td>
+              <td>Rs. {{ total }}</td>
             </tr>
             <tr class="first-child lastchild">
               <td>Shipping</td>
               <td>
-                Enter your address to view shipping options <br />
-                Calculate shipping
+                Location
               </td>
             </tr>
             <tr class="first-child">
               <td>Total</td>
-              <td>$47.00</td>
+              <td>Rs. {{ total }}</td>
             </tr>
             <tr>
               <td colspan="2">
-                <a href="checkout.html"
+                <a href="{% url 'checkout' %}"
                   ><input type="submit" value="procced to checkout"
                 /></a>
               </td>
@@ -102,7 +100,7 @@
     </div>
   </div>
 </div>
-
+{% endif %}
 <!-- popup area start -->
 <div class="overlay"></div>
 <div class="product-popup">

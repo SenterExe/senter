@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% load compress %} 
+{% block content %}
+    <div class="login_register_area">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-xl-6 col-md-12 col-sm-12 offset-xl-3">
+                    {% include 'includes/alert.html' %}
+                    <h3 class="title-7 text-center">register</h3>
+                    <div class="login_wrapper">
+                        <form action="{% url 'register' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="input_wrap">
+                                <label>First Name<span>*</span></label>
+                                {{form.first_name}}
+                            </div>
+                            <div class="input_wrap">
+                                <label>Last Name<span>*</span></label>
+                                {{form.last_name}}
+                            </div>
+                            <div class="input_wrap">
+                                <label>Email address<span>*</span></label>
+                                {{form.email}}
+                            </div>
+                            <div class="input_wrap">
+                                <label>Mobile<span>*</span></label>
+                                {{form.phone_number}}
+                            </div>
+                            <div class="input_wrap input_wrap_3">
+                                <label>Password<span>*</span></label>
+                                {{form.password}}
+                            </div>
+                            <div class="input_wrap input_wrap_3">
+                                <label>Confirm Password<span>*</span></label>
+                                {{form.confirm_password}}
+                            </div>
+                            <div class="input_wrap alert-danger">
+                                {{ form.email.errors }}
+                                {{ form.non_field_errors }}
+                            </div>
+                            <div class="input_wrap input_wrap_3">
+                                <button type="submit">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

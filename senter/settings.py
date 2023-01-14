@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "accounts",
     "store",
     "cart",
+    "orders",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,9 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "cart.context_processor.counter",
+                "cart.context_processor.cart_current",
+                "store.context_processor.products_list",
             ],
         },
     },
@@ -77,6 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "senter.wsgi.application"
 
+AUTH_USER_MODEL = "accounts.Account"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -149,3 +154,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS={
+    messages.ERROR:'danger',
+}
+
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='senterexecutive@gmail.com'
+EMAIL_HOST_PASSWORD='rsxusiqsdxwqxvkp'
+EMAIL_USE_TLS=True
+
+API_KEY='test_b09d34bc79d44f136863a6a7459'
+AUTH_TOKEN='test_2a827424d515a41c8184d260b03'
+SALT='974ce23f1b59494a9c0d384ebe457687'
