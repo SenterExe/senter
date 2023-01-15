@@ -93,7 +93,7 @@ def paynow(request, order_id):
             purpose='Order Process',
             send_email=True,
             email=current_user,
-            redirect_url="http://127.0.0.1:5050/orders/payments_success"
+            redirect_url="https://senter.onrender.com/orders/payments_success"
         )
         # print the long URL of the payment request.
         print (response['payment_request']['longurl'])
