@@ -1,6 +1,6 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% load compress %} 
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
 {% block content %}
 
 {% if request.GET.command == 'verification' %}
@@ -17,26 +17,29 @@
             <div class="login_wrapper">
                 {% include 'includes/alert.html' %}
                 <form action="{% url 'login' %}" method="POST">
-                            {% csrf_token %} 
+                            {% csrf_token %}
                             <div class="input_wrap">
-                                <label>Username or email address <span>*</span></label>
+                                <label>Email Address <span>*</span></label>
                                 <input type="email" name="email">
                             </div>
                             <div class="input_wrap">
                                 <label>Password<span>*</span></label>
                                 <input type="password" name="password">
-                                <span class="show-pass"><i class="far fa-eye-slash"></i></span>
+                                <!-- <span class="show-pass"><i class="far fa-eye-slash"></i></span> -->
                             </div>
-                            <div class="input_wrapp-2">
+                            <!-- <div class="input_wrapp-2">
                                 <input type="checkbox" name="check">
                                 <span>Remember me </span>
-                            </div>
+                            </div> -->
                             <div class="input_wrap">
                                 <button type="submit">log in</button>
                             </div>
                             <div class="input_wrap">
-                                <a href="#">Lost your password?</a>
+                                Forgot your password? Contact us @ <a href="mailto:senterexecutive@gmail.com">senterexecutive@gmail.com</a>
                             </div>
+                            <!-- <div class="input_wrap">
+                                <a href="#">Lost your password?</a>
+                            </div> -->
                         </form>
                     </div>
                 </div>

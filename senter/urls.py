@@ -24,6 +24,8 @@ urlpatterns = [
     path("", views.home, name="index"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
+    path("termsandconditions/", views.terms, name="terms"),
+    path("privacypolicy/", views.privacy, name="privacy"),
     path("store/", include("store.urls")),
     path("carts/", include("cart.urls")),
     path("accounts/", include("accounts.urls")),

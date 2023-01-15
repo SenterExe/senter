@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['senter-web-env.eba-wjxzugbr.us-west-2.elasticbeanstalk.com',]
 
 
 # Application definition
@@ -55,7 +55,8 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",    
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = "senter.urls"
@@ -160,12 +161,17 @@ MESSAGE_TAGS={
     messages.ERROR:'danger',
 }
 
+SESSION_EXPIRE_SECONDS = 3600
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60
+SESSION_TIMEOUT_REDIRECT = 'accounts/login'
+
 EMAIL_HOST=config('EMAIL_HOST')
 EMAIL_PORT=config('EMAIL_PORT', cast=int)
 EMAIL_HOST_USER=config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS=config('EMAIL_USE_TLS', cast=bool)
 
-API_KEY='test_b09d34bc79d44f136863a6a7459'
-AUTH_TOKEN='test_2a827424d515a41c8184d260b03'
-SALT='974ce23f1b59494a9c0d384ebe457687'
+API_KEY=config('API_KEY')
+AUTH_TOKEN=config('AUTH_TOKEN')
+SALT=config('SALT')
