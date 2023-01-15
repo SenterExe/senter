@@ -1,6 +1,6 @@
 databases:
   - name: senterDataBase
-    databaseName: senter-db
+    databaseName: dbsenter
     user: admin
 
 services:
