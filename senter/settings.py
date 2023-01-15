@@ -97,7 +97,7 @@ AUTH_USER_MODEL = "accounts.Account"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'senter',
+        'NAME': 'dbsenter',
         'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
