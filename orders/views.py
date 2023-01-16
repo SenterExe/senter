@@ -12,7 +12,7 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
 
-api = Instamojo(api_key=settings.API_KEY, auth_token=settings.AUTH_TOKEN, endpoint='https://test.instamojo.com/api/1.1/')
+api = Instamojo(api_key=settings.API_KEY, auth_token=settings.AUTH_TOKEN, endpoint=settings.PAYMENT_PORTAL)
 
 
 def paymentsuccess(request):
