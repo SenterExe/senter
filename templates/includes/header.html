@@ -13,7 +13,7 @@
             <ul>
               {% if user.id is not None %}
               <!-- <li><a href="{% url 'index' %}">Account</a></li> -->
-              <li><a href="{% url 'store' %}">Checkout</a></li>
+              <li><a href="{% url 'checkout' %}">Checkout</a></li>
               <li><a href="{% url 'logout' %}">Logout</a></li>
               {% else %}
               <li><a href="{% url 'login' %}">Login</a></li>
