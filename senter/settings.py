@@ -106,7 +106,6 @@ DATABASES = {
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -183,7 +182,7 @@ MESSAGE_TAGS={
 SESSION_EXPIRE_SECONDS = 3600
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60
-SESSION_TIMEOUT_REDIRECT = '/accounts/login'
+SESSION_TIMEOUT_REDIRECT = 'https://senter.onrender.com/accounts/logout/'
 
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587

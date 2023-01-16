@@ -82,36 +82,34 @@ def paymentsuccess(request):
     return redirect('index')
 # Create your views here.
 def paynow(request, order_id):
-    current_user = request.user
-    current_site=get_current_site(request)
-    success_site=str(current_site)+"/orders/success"
-    failed_site=str(current_site)+"/orders/failed"
-    order=Order.objects.get(order_number=order_id, user=current_user)
-    if request.method=='POST':
-        response = api.payment_request_create(
-            amount=order.order_total,
-            purpose='Order Process',
-            send_email=True,
-            email=current_user,
-            redirect_url="https://senter.onrender.com/orders/payments_success"
-        )
-        # print the long URL of the payment request.
-        print (response['payment_request']['longurl'])
-        # print the unique ID(or payment request ID)
-        print (response['payment_request'])
-        payment = Payment(
-                    user = current_user,
-                    payment_id = response['payment_request']['id'],
-                    payment_method = 'InstaMojo',
-                    amount_paid = order.order_total,
-                    status = 'New',
-        )
-        payment.save()
 
-        order.payment = payment
-            # order.is_ordered = True
-        order.save()
-        return redirect(response['payment_request']['longurl'])
+    return (render,'store/portal-in-progress.html')
+    # current_user = request.user
+    # current_site=get_current_site(request)
+    # success_site=str(current_site)+"/orders/success"
+    # failed_site=str(current_site)+"/orders/failed"
+    # order=Order.objects.get(order_number=order_id, user=current_user)
+    # if request.method=='POST':
+    #     response = api.payment_request_create(
+    #         amount=order.order_total,
+    #         purpose='Order Process',
+    #         send_email=True,
+    #         email=current_user,
+    #         redirect_url="https://senter.onrender.com/orders/payments_success"
+    #     )
+    #     payment = Payment(
+    #                 user = current_user,
+    #                 payment_id = response['payment_request']['id'],
+    #                 payment_method = 'InstaMojo',
+    #                 amount_paid = order.order_total,
+    #                 status = 'New',
+    #     )
+    #     payment.save()
+
+    #     order.payment = payment
+    #         # order.is_ordered = True
+    #     order.save()
+    #     return redirect(response['payment_request']['longurl'])
 
 def payments(request):
     if(request=='POST'):
@@ -119,56 +117,57 @@ def payments(request):
     return render(request,'order/payment.html')
 
 def place_order(request):
-    current_user = request.user
-    total=0
-    quantity=0
-    # If the cart count is less than or equal to 0, then redirect back to shop
-    cart_items = CartItem.objects.filter(user=current_user)
-    cart_count = cart_items.count()
-    if cart_count <= 0:
-        return redirect('store')
+    # current_user = request.user
+    # total=0
+    # quantity=0
+    # # If the cart count is less than or equal to 0, then redirect back to shop
+    # cart_items = CartItem.objects.filter(user=current_user)
+    # cart_count = cart_items.count()
+    # if cart_count <= 0:
+    #     return redirect('store')
 
-    for cart_item in cart_items:
-        total += (cart_item.product.price * cart_item.quantity)
-        quantity += cart_item.quantity
+    # for cart_item in cart_items:
+    #     total += (cart_item.product.price * cart_item.quantity)
+    #     quantity += cart_item.quantity
 
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            # Store all the billing information inside Order table
-            data = Order()
-            data.user = current_user
-            data.first_name = form.cleaned_data['first_name']
-            data.last_name = form.cleaned_data['last_name']
-            data.phone = form.cleaned_data['phone']
-            data.email = form.cleaned_data['email']
-            data.address_line_1 = form.cleaned_data['address_line_1']
-            data.address_line_2 = form.cleaned_data['address_line_2']
-            data.country = form.cleaned_data['country']
-            data.state = form.cleaned_data['state']
-            data.city = form.cleaned_data['city']
-            data.order_note = form.cleaned_data['order_note']
-            data.order_total = total
-            data.ip = request.META.get('REMOTE_ADDR')
-            data.save()
-            # Generate order number
-            yr = int(datetime.date.today().strftime('%Y'))
-            dt = int(datetime.date.today().strftime('%d'))
-            mt = int(datetime.date.today().strftime('%m'))
-            d = datetime.date(yr,mt,dt)
-            current_date = d.strftime("%Y%m%d") #20210305
-            order_number = current_date + str(data.id)
-            data.order_number = order_number
-            data.save()
+    # if request.method == 'POST':
+    #     form = OrderForm(request.POST)
+    #     if form.is_valid():
+    #         # Store all the billing information inside Order table
+    #         data = Order()
+    #         data.user = current_user
+    #         data.first_name = form.cleaned_data['first_name']
+    #         data.last_name = form.cleaned_data['last_name']
+    #         data.phone = form.cleaned_data['phone']
+    #         data.email = form.cleaned_data['email']
+    #         data.address_line_1 = form.cleaned_data['address_line_1']
+    #         data.address_line_2 = form.cleaned_data['address_line_2']
+    #         data.country = form.cleaned_data['country']
+    #         data.state = form.cleaned_data['state']
+    #         data.city = form.cleaned_data['city']
+    #         data.order_note = form.cleaned_data['order_note']
+    #         data.order_total = total
+    #         data.ip = request.META.get('REMOTE_ADDR')
+    #         data.save()
+    #         # Generate order number
+    #         yr = int(datetime.date.today().strftime('%Y'))
+    #         dt = int(datetime.date.today().strftime('%d'))
+    #         mt = int(datetime.date.today().strftime('%m'))
+    #         d = datetime.date(yr,mt,dt)
+    #         current_date = d.strftime("%Y%m%d") #20210305
+    #         order_number = current_date + str(data.id)
+    #         data.order_number = order_number
+    #         data.save()
 
-            order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
-            context = {
-                'order': order,
-                'cart_items': cart_items,
-                'total': total,
-            }
-            return render(request, 'order/payment.html', context)
-        else:
-            return redirect('checkout')
-    else:
-        return redirect('checkout')
+    #         order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
+    #         context = {
+    #             'order': order,
+    #             'cart_items': cart_items,
+    #             'total': total,
+    #         }
+    #         return render(request, 'order/payment.html', context)
+    #     else:
+    #         return redirect('checkout')
+    # else:
+    #     return redirect('checkout')
+    return render(request, 'store/portal-in-progress.html')
