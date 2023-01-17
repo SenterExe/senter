@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% load compress %} 
+{% block content %}
+
+    <div class="checkout_area pt-80">
+        <div class="container">
+            <div class="notification__message">
+                <p><i class="fal fa-window-maximize"></i>Message:</p>
+                <p class="container">
+                    Dear customer, <br>
+                    
+                    {{message}}<br/>
+
+                    Regards!<br>
+                    Team Senter
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
