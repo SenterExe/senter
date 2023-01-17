@@ -1,12 +1,11 @@
 {% autoescape off %}
 
-Hi {{user.first_name}},<br />
+Hi {{user.first_name}},
 
-{{ message }} <br />
+{{ message }} 
 
 {% if status == 'Credit' %}
 Order Number: {{order.order_number}}
-<br />
 You will get further updates directly from our team!!
 {% endif %}
 
